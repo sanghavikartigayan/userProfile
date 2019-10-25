@@ -1,0 +1,82 @@
+<div class="container">
+    <div class="grid profile" *ngIf="this.user">
+        <div class="grid__profile">
+            <img src="../../../../assets/user.png" alt="{{user.name}}'s Picture'">
+        </div>
+        <div class="grid__info">
+            <h1 class="grid__info-title">{{user.name}} </h1>
+            <h2>{{user.id}}</h2>
+
+            <!-- #region TABS -->
+            <div class="grid__tabs u-margin-top-small">
+                <!-- #region Tabs List -->
+                <div class="tabs u-margin-bottom-small">
+                    <ul>
+                        <li [ngClass]="{'is-active': activeTab === 'about'}">
+                            <a (click)="toggleTab('work')">
+                                <i class="fa fa-user">&nbsp;</i>
+                                About
+                            </a>
+                        </li>
+                        <li [ngClass]="{'is-active': activeTab === 'colleagues'}">
+                            <a (click)="toggleTab('personal')">
+                                <i class="fa fa-users">&nbsp;</i>
+                                Colleagues
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- #endregion Tabs List -->
+
+                <!-- #region 'About' Tab -->
+                <div *ngIf="activeTab === 'work'">
+                    <div class="grid__tabs-blocks">
+                        <h3 class="grid__tabs-title">Basic Information</h3>
+                        <div class="info">
+                            <span class="info-label">Email:</span>
+                            <span class="info-value">{{user.email}}</span>
+                        </div>
+                        <div class="info">
+                            <span class="info-label">Phone Ext:</span>
+                            <span class="info-value">{{user.phone}}</span>
+                        </div>
+                    </div>
+                    <div class="grid__tabs-blocks">
+                        <h3 class="grid__tabs-title">Work Information</h3>
+                        <div class="info">
+                            <span class="info-label">Company:</span>
+                            <span class="info-value">
+                                {{user.company.name}}
+                            </span>
+                        </div>
+                        <div class="info">
+                            <span class="info-label">Employee Number:</span>
+                            <span class="info-value">{{user.id}}</span>
+                        </div>
+                        <div class="info">
+                            <span class="info-label">Website:</span>
+                            <span class="info-value">{{user.website}}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div *ngIf="activeTab === 'personal'">
+                    <h3 class="grid__tabs-title">Personal Information</h3>
+
+                    <div class="flex">
+                        <div class="flex-item">
+                            <div class="info">
+                                <span class="info-label">User Name</span>
+                                <span class="info-value">{{user.username}}</span>
+                            </div>
+                            <div class="info">
+                                <span class="info-label">Address:</span>
+                                <span class="info-value">{{user.address.suite}} {{user.address.street}}
+                                    {{user.address.city}} {{user.address.zipcode}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,24 @@
+.container {
+  margin: 0 auto;
+
+  &-main {
+    padding: 5rem;
+  }
+
+  &-info {
+    padding: 2rem 0;
+  }
+
+  // Different size of containers
+  &-small {
+    width: 50%;
+  }
+
+  &-medium {
+    width: 70%;
+  }
+
+  &-large {
+    width: 90%;
+  }
+}

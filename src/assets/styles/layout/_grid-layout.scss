@@ -1,0 +1,42 @@
+.grid {
+  display: grid;
+  grid-gap: 1.5rem;
+  grid-template-columns: repeat(3, 1fr);
+
+  &__extra-large {
+    grid-template-columns: repeat(6, 1fr);
+  }
+
+  &__large {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  &__medium {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  &__small {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @for $size from 1 through 10 {
+    &-column-#{$size} {
+      grid-template-columns: repeat($size, 1fr);
+    }
+    &-gap-#{$size} {
+      grid-gap: calc(#{$size} * 1rem);
+    }
+    &-padding-#{$size} {
+      padding: calc(#{$size} * 1rem);
+    }
+  }
+
+  &__heading {
+    grid-column: 1 / -1;
+  }
+  &__field {
+    &-full-width {
+      grid-column: 1 / -1;
+    }
+  }
+}

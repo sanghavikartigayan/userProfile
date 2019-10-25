@@ -1,0 +1,7 @@
+<div class="container container-main">
+    <div class="flex__container flex__container-center">
+        <ng-container *ngFor="let user of users">
+            <app-user class="flex__item" [user]="user"></app-user>
+        </ng-container>
+    </div>
+</div>
