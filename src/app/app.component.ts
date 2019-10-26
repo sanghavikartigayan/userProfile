@@ -7,6 +7,4 @@ import { UserService } from './@shared/services/user-service.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'frontEndAssessment';
-
 }

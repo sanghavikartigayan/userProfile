@@ -1,17 +1,21 @@
 .grid {
-  grid-template-columns: 1fr 3fr;
+  grid-template-columns: 1fr 2fr;
 
   &__info {
     &-title {
-      font-size: 2rem;
+      font-size: 2.5rem;
       color: #666;
     }
+  }
+
+  .btn {
+    margin: 2rem 0;
   }
 }
 
 .grid__tabs-title {
   text-transform: uppercase;
-  font-weight: 700;
+  font-weight: 500;
   letter-spacing: 1.5px;
   color: #aaa;
   margin-bottom: 1rem;
@@ -24,12 +28,20 @@
 }
 
 .profile {
-  padding: 2rem;
-  width: 80%;
-  margin: 0 auto;
-  border: 1px solid rgb(7, 121, 156);
-  border-radius: 5px;
-  box-shadow: 0 1px 4px black;
+   padding: 2rem;
+   margin: 4rem auto;
+
+  .image {
+    position: relative;
+  }
+  .rounded {
+    border-radius: 50%;
+    width: 30%;
+    height: 60%;
+    top: 40%;
+    left: 28%;
+    position: absolute;
+  }
 }
 .info {
   margin-bottom: 1rem;
@@ -37,18 +49,4 @@
 .info-label {
   display: inline-block;
   min-width: 12rem;
-}
-
-.flex {
-  display: flex;
-  overflow: hidden;
-  flex-wrap: nowrap;
-
-  &-item {
-    width: 5rem;
-    text-align: center;
-    &:not(:last-child) {
-      margin-right: 2rem;
-    }
-  }
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
 import { User } from 'src/app/@shared/models/user.model';
 import { ActivatedRoute } from '@angular/router';
 import { UserService } from 'src/app/@shared/services/user-service.service';
@@ -11,10 +12,10 @@ export class UserDetailsComponent implements OnInit {
   user: User;
 
   activeTab;
-  constructor(private activatedRoute: ActivatedRoute, private userService: UserService) { }
+  constructor(private activatedRoute: ActivatedRoute, private userService: UserService, private route: Router) { }
 
   ngOnInit() {
-    this.activeTab = 'personal';
+    this.activeTab = 'work';
     const id = +this.activatedRoute.snapshot.paramMap.get('id');
 
     this.userService.getUserProfile(id)
@@ -27,4 +28,7 @@ export class UserDetailsComponent implements OnInit {
     this.activeTab = activeTab;
   }
 
+  goBack() {
+    this.route.navigateByUrl('/');
+  }
 }

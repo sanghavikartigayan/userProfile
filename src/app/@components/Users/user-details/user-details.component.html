@@ -1,27 +1,31 @@
 <div class="container">
+  <div class="row">
     <div class="grid profile" *ngIf="this.user">
-        <div class="grid__profile">
-            <img src="../../../../assets/user.png" alt="{{user.name}}'s Picture'">
+      <div class="col-md-4">
+        <div class="grid__profile" style="margin-bottom: 5rem;">
+            <img src="../../../assets/backgroundimage.jpeg" class="image" alt="{{ user.name }}">
+            <img src="../../../../assets/user.png" alt="{{user.name}}'s Picture'" class="rounded float-right">
         </div>
+      </div>
+      <div class="col-md-8">
         <div class="grid__info">
             <h1 class="grid__info-title">{{user.name}} </h1>
-            <h2>{{user.id}}</h2>
+            <h1 class="grid__info-title">{{user.id}}</h1>
+            <button type="button" class="btn btn-outline-info">Active</button>
 
-            <!-- #region TABS -->
-            <div class="grid__tabs u-margin-top-small">
-                <!-- #region Tabs List -->
-                <div class="tabs u-margin-bottom-small">
-                    <ul>
-                        <li [ngClass]="{'is-active': activeTab === 'about'}">
+            <div class="grid__tabs">
+                <div class="tabs">
+                    <ul class="nav nav-tabs">
+                        <li [ngClass]="{'active': activeTab === 'work'}">
                             <a (click)="toggleTab('work')">
                                 <i class="fa fa-user">&nbsp;</i>
-                                About
+                                Work
                             </a>
                         </li>
-                        <li [ngClass]="{'is-active': activeTab === 'colleagues'}">
+                        <li [ngClass]="{'active': activeTab === 'personal'}">
                             <a (click)="toggleTab('personal')">
                                 <i class="fa fa-users">&nbsp;</i>
-                                Colleagues
+                                Personal
                             </a>
                         </li>
                     </ul>
@@ -50,21 +54,16 @@
                             </span>
                         </div>
                         <div class="info">
-                            <span class="info-label">Employee Number:</span>
-                            <span class="info-value">{{user.id}}</span>
-                        </div>
-                        <div class="info">
                             <span class="info-label">Website:</span>
                             <span class="info-value">{{user.website}}</span>
                         </div>
+                        <button type="button" class="btn btn-info btn-sm btn-block" (click)="goBack()"><i class="fa fa-arrow-left"></i>Go Back</button>
                     </div>
                 </div>
 
                 <div *ngIf="activeTab === 'personal'">
+                    <div class="grid__tabs-blocks">
                     <h3 class="grid__tabs-title">Personal Information</h3>
-
-                    <div class="flex">
-                        <div class="flex-item">
                             <div class="info">
                                 <span class="info-label">User Name</span>
                                 <span class="info-value">{{user.username}}</span>
@@ -74,9 +73,11 @@
                                 <span class="info-value">{{user.address.suite}} {{user.address.street}}
                                     {{user.address.city}} {{user.address.zipcode}}</span>
                             </div>
+                            <button type="button" class="btn btn-info btn-sm btn-block" (click)="goBack()"><i class="fa fa-arrow-left"></i>Go Back</button>
                         </div>
-                    </div>
                 </div>
             </div>
         </div>
     </div>
+  </div>
+</div>
