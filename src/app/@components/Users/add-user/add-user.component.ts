@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { UserService } from 'src/app/@shared/services/user-service.service';
+import { User } from 'src/app/@shared/models/user.model';
 
 @Component({
   selector: 'app-add-user',
@@ -7,8 +9,10 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   styleUrls: ['./add-user.component.scss']
 })
 export class AddUserComponent implements OnInit {
+
+  @Output() newUser = new EventEmitter<User>();
   addUser: FormGroup;
-  constructor() { }
+  constructor(private userService: UserService) { }
 
   ngOnInit() {
     this.addUser = new FormGroup({
@@ -31,6 +35,6 @@ export class AddUserComponent implements OnInit {
   }
 
   onAdd(formValue) {
-    console.log(formValue);
+    this.userService.addUser(formValue).subscribe(res => console.log(res));
   }
 }

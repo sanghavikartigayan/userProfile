@@ -29,4 +29,8 @@ export class UserService {
   getUserByName(name: string) {
     return this.http.get(`https://jsonplaceholder.typicode.com/user?name=${name}`);
   }
+
+  addUser(data: User) {
+    return this.http.post(`${this.baseUrl}`, data).pipe(res => this.getUsers());
+  }
 }

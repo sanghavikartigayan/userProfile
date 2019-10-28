@@ -18,13 +18,13 @@
                             <ul class="nav nav-tabs">
                                 <li [ngClass]="{'active': activeTab === 'work'}">
                                     <a (click)="toggleTab('work')">
-                                        <i class="fa fa-user">&nbsp;</i>
+                                        <i class="fa fa-briefcase">&nbsp;</i>
                                         Work
                                     </a>
                                 </li>
                                 <li [ngClass]="{'active': activeTab === 'personal'}">
                                     <a (click)="toggleTab('personal')">
-                                        <i class="fa fa-users">&nbsp;</i>
+                                        <i class="fa fa-user">&nbsp;</i>
                                         Personal
                                     </a>
                                 </li>
@@ -58,7 +58,7 @@
                                     <span class="info-value">{{user.website}}</span>
                                 </div>
                                 <button type="button" class="btn btn-info btn-sm btn-block" (click)="goBack()"><i
-                                        class="fa fa-arrow-left"></i>Go Back</button>
+                                        class="fa fa-arrow-left"></i> Go Back</button>
                             </div>
                         </div>
 
@@ -75,7 +75,7 @@
                                         {{user.address.city}} {{user.address.zipcode}}</span>
                                 </div>
                                 <button type="button" class="btn btn-info btn-sm btn-block" (click)="goBack()"><i
-                                        class="fa fa-arrow-left"></i>Go Back</button>
+                                        class="fa fa-arrow-left"></i> Go Back</button>
                             </div>
                         </div>
                     </div>
