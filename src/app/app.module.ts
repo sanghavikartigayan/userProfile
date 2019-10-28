@@ -8,6 +8,7 @@ import { UsersComponent } from './@components/Users/users.component';
 import { UserService } from './@shared/services/user-service.service';
 import { UserComponent } from './@components/Users/user/user.component';
 import { UserDetailsComponent } from './@components/Users/user-details/user-details.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { UserDetailsComponent } from './@components/Users/user-details/user-deta
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [UserService],
   bootstrap: [AppComponent]

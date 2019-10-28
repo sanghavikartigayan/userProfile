@@ -1,3 +1,16 @@
+<div class="container u-margin-top">
+    <form [formGroup]="searchUser" ngSubmit="onSearch(searchBar.get('searchBy').value)'">
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <input type="text" class="form-control" id="searchBar" placeholder="Search User By Name"
+                    formControlName="searchBy">
+            </div>
+            <div class="col-md-6">
+                <button class="btn btn-primary" type="submit">Search</button>
+            </div>
+        </div>
+    </form>
+</div>
 <div class="container-fluid">
     <div class="flex__container flex__container-center">
         <ng-container *ngFor="let user of users">
