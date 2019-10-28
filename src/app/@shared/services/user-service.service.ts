@@ -25,4 +25,8 @@ export class UserService {
   getUserProfile(id: number) {
     return this.http.get(`${this.baseUrl}/${id}`);
   }
+
+  getUserByName(name: string) {
+    return this.http.get(`https://jsonplaceholder.typicode.com/user?name=${name}`);
+  }
 }

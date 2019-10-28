@@ -11,6 +11,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 export class UsersComponent implements OnInit {
   users: User[];
   searchUser: FormGroup;
+  addNew = false;
   constructor(private userService: UserService) { }
 
   ngOnInit() {
@@ -23,6 +24,8 @@ export class UsersComponent implements OnInit {
   }
 
   onSearch(value) {
-    console.log(value);
+    this.userService.getUserByName(value).subscribe((res) => {
+      console.log(res);
+    });
   }
 }
