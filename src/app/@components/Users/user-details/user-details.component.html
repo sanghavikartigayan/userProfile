@@ -1,83 +1,85 @@
 <div class="container">
-  <div class="row">
-    <div class="grid profile" *ngIf="this.user">
-      <div class="col-md-4">
-        <div class="grid__profile" style="margin-bottom: 5rem;">
-            <img src="../../../assets/backgroundimage.jpeg" class="image" alt="{{ user.name }}">
-            <img src="../../../../assets/user.png" alt="{{user.name}}'s Picture'" class="rounded float-right">
-        </div>
-      </div>
-      <div class="col-md-8">
-        <div class="grid__info">
-            <h1 class="grid__info-title">{{user.name}} </h1>
-            <h1 class="grid__info-title">{{user.id}}</h1>
-            <button type="button" class="btn btn-outline-info">Active</button>
-
-            <div class="grid__tabs">
-                <div class="tabs">
-                    <ul class="nav nav-tabs">
-                        <li [ngClass]="{'active': activeTab === 'work'}">
-                            <a (click)="toggleTab('work')">
-                                <i class="fa fa-user">&nbsp;</i>
-                                Work
-                            </a>
-                        </li>
-                        <li [ngClass]="{'active': activeTab === 'personal'}">
-                            <a (click)="toggleTab('personal')">
-                                <i class="fa fa-users">&nbsp;</i>
-                                Personal
-                            </a>
-                        </li>
-                    </ul>
+    <div class="row">
+        <div class="grid profile" *ngIf="this.user">
+            <div class="col-md-4">
+                <div class="grid__profile" style="margin-bottom: 5rem;">
+                    <img src="../../../assets/backgroundimage.jpeg" class="image" alt="{{ user.name }}">
+                    <img src="../../../../assets/user.png" alt="{{user.name}}'s Picture'" class="user float-right">
                 </div>
-                <!-- #endregion Tabs List -->
+            </div>
+            <div class="col-md-8">
+                <div class="grid__info">
+                    <h1 class="grid__info-title">{{user.name}} </h1>
+                    <h1 class="grid__info-title">{{user.id}}</h1>
+                    <button type="button" class="btn btn-outline-info">Active</button>
 
-                <!-- #region 'About' Tab -->
-                <div *ngIf="activeTab === 'work'">
-                    <div class="grid__tabs-blocks">
-                        <h3 class="grid__tabs-title">Basic Information</h3>
-                        <div class="info">
-                            <span class="info-label">Email:</span>
-                            <span class="info-value">{{user.email}}</span>
+                    <div class="grid__tabs">
+                        <div class="tabs">
+                            <ul class="nav nav-tabs">
+                                <li [ngClass]="{'active': activeTab === 'work'}">
+                                    <a (click)="toggleTab('work')">
+                                        <i class="fa fa-user">&nbsp;</i>
+                                        Work
+                                    </a>
+                                </li>
+                                <li [ngClass]="{'active': activeTab === 'personal'}">
+                                    <a (click)="toggleTab('personal')">
+                                        <i class="fa fa-users">&nbsp;</i>
+                                        Personal
+                                    </a>
+                                </li>
+                            </ul>
                         </div>
-                        <div class="info">
-                            <span class="info-label">Phone Ext:</span>
-                            <span class="info-value">{{user.phone}}</span>
+                        <!-- #endregion Tabs List -->
+
+                        <!-- #region 'About' Tab -->
+                        <div *ngIf="activeTab === 'work'">
+                            <div class="grid__tabs-blocks">
+                                <h3 class="grid__tabs-title">Basic Information</h3>
+                                <div class="info">
+                                    <span class="info-label">Email:</span>
+                                    <span class="info-value">{{user.email}}</span>
+                                </div>
+                                <div class="info">
+                                    <span class="info-label">Phone Ext:</span>
+                                    <span class="info-value">{{user.phone}}</span>
+                                </div>
+                            </div>
+                            <div class="grid__tabs-blocks">
+                                <h3 class="grid__tabs-title">Work Information</h3>
+                                <div class="info">
+                                    <span class="info-label">Company:</span>
+                                    <span class="info-value">
+                                        {{user.company.name}}
+                                    </span>
+                                </div>
+                                <div class="info">
+                                    <span class="info-label">Website:</span>
+                                    <span class="info-value">{{user.website}}</span>
+                                </div>
+                                <button type="button" class="btn btn-info btn-sm btn-block" (click)="goBack()"><i
+                                        class="fa fa-arrow-left"></i>Go Back</button>
+                            </div>
+                        </div>
+
+                        <div *ngIf="activeTab === 'personal'">
+                            <div class="grid__tabs-blocks">
+                                <h3 class="grid__tabs-title">Personal Information</h3>
+                                <div class="info">
+                                    <span class="info-label">User Name</span>
+                                    <span class="info-value">{{user.username}}</span>
+                                </div>
+                                <div class="info">
+                                    <span class="info-label">Address:</span>
+                                    <span class="info-value">{{user.address.suite}} {{user.address.street}}
+                                        {{user.address.city}} {{user.address.zipcode}}</span>
+                                </div>
+                                <button type="button" class="btn btn-info btn-sm btn-block" (click)="goBack()"><i
+                                        class="fa fa-arrow-left"></i>Go Back</button>
+                            </div>
                         </div>
                     </div>
-                    <div class="grid__tabs-blocks">
-                        <h3 class="grid__tabs-title">Work Information</h3>
-                        <div class="info">
-                            <span class="info-label">Company:</span>
-                            <span class="info-value">
-                                {{user.company.name}}
-                            </span>
-                        </div>
-                        <div class="info">
-                            <span class="info-label">Website:</span>
-                            <span class="info-value">{{user.website}}</span>
-                        </div>
-                        <button type="button" class="btn btn-info btn-sm btn-block" (click)="goBack()"><i class="fa fa-arrow-left"></i>Go Back</button>
-                    </div>
-                </div>
-
-                <div *ngIf="activeTab === 'personal'">
-                    <div class="grid__tabs-blocks">
-                    <h3 class="grid__tabs-title">Personal Information</h3>
-                            <div class="info">
-                                <span class="info-label">User Name</span>
-                                <span class="info-value">{{user.username}}</span>
-                            </div>
-                            <div class="info">
-                                <span class="info-label">Address:</span>
-                                <span class="info-value">{{user.address.suite}} {{user.address.street}}
-                                    {{user.address.city}} {{user.address.zipcode}}</span>
-                            </div>
-                            <button type="button" class="btn btn-info btn-sm btn-block" (click)="goBack()"><i class="fa fa-arrow-left"></i>Go Back</button>
-                        </div>
                 </div>
             </div>
         </div>
     </div>
-  </div>
-</div>

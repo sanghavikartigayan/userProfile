@@ -28,18 +28,19 @@
 }
 
 .profile {
-   padding: 2rem;
-   margin: 4rem auto;
+  padding: 2rem;
+  margin: 4rem auto;
 
   .image {
     position: relative;
   }
-  .rounded {
+  .user {
+    border: 0.3rem solid rgba(#fff, 0.3);
+    margin-top: -6rem;
+    margin-left: 10rem;
+    margin-bottom: 1rem;
+    max-width: 9rem;
     border-radius: 50%;
-    width: 30%;
-    height: 60%;
-    top: 40%;
-    left: 28%;
     position: absolute;
   }
 }

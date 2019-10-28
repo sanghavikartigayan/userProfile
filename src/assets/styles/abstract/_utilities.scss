@@ -1,0 +1,77 @@
+@import "variables";
+
+.u-margin {
+  // TOP MARGIN
+  &-top {
+    margin-top: $margin !important;
+
+    &-large {
+      margin-top: $margin-large !important;
+    }
+
+    &-medium {
+      margin-top: $margin-medium !important;
+    }
+
+    &-small {
+      margin-top: $margin-small !important;
+    }
+  }
+
+  // BOTTOM MARGIN
+  &-bottom {
+    margin-bottom: $margin !important;
+
+    &-large {
+      margin-bottom: $margin-large !important;
+    }
+
+    &-medium {
+      margin-bottom: $margin-medium !important;
+    }
+
+    &-small {
+      margin-bottom: $margin-small !important;
+    }
+  }
+
+  // BOTTOM MARGIN
+  &-left {
+    margin-left: $margin !important;
+
+    &-large {
+      margin-left: $margin-large !important;
+    }
+
+    &-medium {
+      margin-left: $margin-medium !important;
+    }
+
+    &-small {
+      margin-left: $margin-small !important;
+    }
+  }
+
+  // TOP AND BOTTOM MARGIN
+  &-vertical {
+    margin: $margin 0 !important;
+
+    &-large {
+      margin: $margin-large 0 !important;
+    }
+
+    &-medium {
+      margin: $margin-medium 0 !important;
+    }
+
+    &-small {
+      margin: $margin-small 0 !important;
+    }
+  }
+}
+
+// center
+
+.u-margin-center {
+  margin: 0 auto;
+}

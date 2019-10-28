@@ -1,32 +1,38 @@
 <div class="card-container">
-    <div class="card">
-        <img src="../../../assets/backgroundimage.jpeg" class="card-img-top" alt="{{ user.name }}">
-        <div class="card-body text-center">
-            <img class="avatar rounded-circle" src="../../../assets/user.png" alt="Bologna">
-            <h5 class="card-title text-info font-weight-bold">{{ user.name }}</h5>
-            <p class="card-text text-muted">
-                {{ user.email }}
-            </p>
-            <p class="card-text"> {{ user.name }} is working in {{ user.company.name}} and residing at
-                {{ user.address.suite}} {{ user.address.street}},{{ user.address.city}}</p>
+    <div class="accordion" id="#accordionExample">
+        <div class="card">
+            <img src="../../../assets/backgroundimage.jpeg" class="card-img-top" alt="{{ user.name }}">
+            <div class="card-body text-center">
+                <img class="avatar rounded-circle" src="../../../assets/user.png" alt="{{ user.name }}">
+                <h5 class="card-title text-info"><b>{{ user.name }}</b></h5>
+                <p class="card-text text-muted">
+                    {{ user.email }}
+                </p>
+                <p class="card-text"> {{ user.name }} is working in {{ user.company.name}} and residing at
+                    {{ user.address.suite}} {{ user.address.street}},{{ user.address.city}}</p>
+                <a class="btn btn-link" data-parent="#accordionExample" data-toggle="collapse" href="#{{user.id}}"
+                    aria-expanded="false" aria-controls="collapseExample">Read More
+                </a>
+                <div class="collapse" id="{{user.id}}" data-parent="#accordionExample" *ngIf="this.user">
+                    <ul>
+                        <li>
+                            User Id: {{ user.id }}
+                        </li>
+                        <li>
+                            User Name: {{ user.username }}
+                        </li>
+                        <li>
+                            Phone: {{ user.phone }}
+                        </li>
+                        <li>
+                            Website: {{ user.website }}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <footer class="card-footer">
+                <a class="btn btn-info" [routerLink]="['/user/',user.id]">View Profile</a>
+            </footer>
         </div>
-        <hr>
-        <div class="collapse" id="collapseExample">
-            <span>User Id:</span>
-            <p>{{ user.id }}</p><br>
-            <span>User Name:</span>
-            <p>{{ user.username }}</p><br>
-            <span>Phone:</span>
-            <p>{{ user.phone }}</p><br>
-            <span>Website:</span>
-            <p>{{ user.website }}</p>
-        </div>
-        <footer class="card-footer">
-            <a class="btn btn-info" [routerLink]="['/user/',user.id]">View Profile</a>
-            <button class="btn btn-dark" type="button" data-toggle="collapse" href="#collapseExample"
-                aria-expanded="true" aria-controls="collapseExample">
-                View More
-            </button>
-        </footer>
     </div>
 </div>
