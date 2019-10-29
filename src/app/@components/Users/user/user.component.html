@@ -35,8 +35,8 @@
                 <div class="section">
                     <button class="btn-rounded btn-rounded-delete"><i class="fa fa-trash"
                             (click)="onDeleteProfile(user)"></i></button>
-                    <button class="btn-rounded btn-rounded-edit u-margin-left"><i class="fa fa-edit"
-                            (click)="onEditProfile(user.id)"></i></button>
+                    <button class="btn-rounded btn-rounded-edit u-margin-left" data-toggle="modal"
+                        data-target="#editUser" (click)="onEditProfile(user)"><i class="fa fa-edit"></i></button>
                     <a class="btn-rounded btn-rounded-view u-margin-left"><i class="fa fa-eye"
                             [routerLink]="['/user/',user.id]"></i></a>
                 </div>

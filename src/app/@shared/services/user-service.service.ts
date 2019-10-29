@@ -34,8 +34,8 @@ export class UserService {
     return this.http.post(`${this.baseUrl}`, data);
   }
 
-  editUser(id: number, formData) {
-    return this.http.put(`${this.baseUrl}/${id}`, formData);
+  editUser(user: User) {
+    return this.http.patch(`${this.baseUrl}/${user.id}`, JSON.stringify({ isRead: true }));
   }
 
   deleteUser(id: number) {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from 'src/app/@shared/services/user-service.service';
 import { User } from 'src/app/@shared/models/user.model';
@@ -10,49 +10,44 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   styleUrls: ['./edit-user.component.scss']
 })
 export class EditUserComponent implements OnInit {
+  @Input() user: any;
+  @Output() editedUser = new EventEmitter<any>();
 
-  constructor(private activatedRoute: ActivatedRoute, private userService: UserService, private route: Router) { }
-  user: User;
-  showUser = true;
+  @Output() cancelEdit = new EventEmitter<boolean>();
+  constructor(private userService: UserService) { }
   editUser: FormGroup;
   ngOnInit() {
-    const id = +this.activatedRoute.snapshot.paramMap.get('id');
-
-    this.userService.getUserProfile(id)
-      .subscribe((user: User) => {
-        this.showUser = true;
-        this.user = user;
-      }, (err) => {
-        this.showUser = false;
-        console.log(err);
-      });
 
     this.editUser = new FormGroup({
-      name: new FormControl('', Validators.required),
-      username: new FormControl('', Validators.required),
-      email: new FormControl('', Validators.email),
+      name: new FormControl(this.user.name),
+      username: new FormControl(this.user.username),
+      email: new FormControl(this.user.email, Validators.email),
       address: new FormGroup({
-        street: new FormControl('', Validators.required),
-        suite: new FormControl('', Validators.required),
-        city: new FormControl('', Validators.required),
-        zipcode: new FormControl('', Validators.required)
+        street: new FormControl(this.user.address.street),
+        suite: new FormControl(this.user.address.suite),
+        city: new FormControl(this.user.address.city),
+        zipcode: new FormControl(this.user.address.zipcode)
       }),
-      phone: new FormControl('', Validators.required),
-      website: new FormControl(''),
+      phone: new FormControl(this.user.phone),
+      website: new FormControl(this.user.website),
       company: new FormGroup({
-        companyname: new FormControl('', Validators.required),
-        catchPhrase: new FormControl(''),
-        bs: new FormControl('')
+        companyname: new FormControl(this.user.company.name),
+        catchPhrase: new FormControl(this.user.company.catchPhrase),
+        bs: new FormControl(this.user.company.bs)
       })
+    });
+
+  }
+
+  onEdit(user) {
+    this.userService.editUser(user).subscribe(res => {
+      console.log(res);
+      this.editedUser.emit(res);
     });
   }
 
-  goBack() {
-    this.route.navigateByUrl('/');
+  onCancel() {
+    this.cancelEdit.emit(false);
   }
-  onEdit(id, formValue) {
-    this.userService.editUser(id, formValue).subscribe(res => {
-      console.log(res);
-    });
-  }
+
 }

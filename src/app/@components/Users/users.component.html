@@ -1,21 +1,25 @@
 <div class="container u-margin-top">
-    <form [formGroup]="searchUser" (ngSubmit)="onSearch(searchUser.get('searchBy').value)">
+    <!-- <form [formGroup]="searchUser" (ngSubmit)="onSearch(searchUser.get('searchBy').value)">
         <div class="form-row">
             <div class="form-group col-md-6">
                 <input type="text" class="form-control" id="searchBar" placeholder="Search User By Name"
                     formControlName="searchBy">
-            </div>
-            <div class="col-md-6">
-                <button class="btn btn-primary" type="submit">Search</button>
-                <button class="btn btn-success u-margin-left-small pull-right" type="button" data-toggle="modal"
-                    data-target="#addUser" (click)="addNew = !addNew"><i class="fa fa-plus"></i>
-                    Add new
-                    user</button>
-            </div>
-        </div>
-    </form>
+            </div> -->
+    <div class="col-md-12">
+        <!-- <button class="btn btn-primary" type="submit">Search</button> -->
+        <button class="btn btn-success u-margin-left-small pull-right" type="button" data-toggle="modal"
+            data-target="#addUser" (click)="addNew = !addNew"><i class="fa fa-plus"></i>
+            Add new
+            user</button>
+    </div>
+    <!-- </div>
+    </form> -->
     <div *ngIf="addNew === true">
         <app-add-user (newUser)="onAddNew($event)"></app-add-user>
+    </div>
+    <div *ngIf="editUser === true">
+        <app-edit-user [user]="this.user" (editedUser)="onEdittedUser($event)" (cancelEdit)="onCancelEdit()">
+        </app-edit-user>
     </div>
 </div>
 <div class="container-fluid">

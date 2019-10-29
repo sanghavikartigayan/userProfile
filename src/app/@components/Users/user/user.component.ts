@@ -10,14 +10,14 @@ import { UserService } from 'src/app/@shared/services/user-service.service';
 export class UserComponent implements OnInit {
 
   @Input() user: User;
-  @Output() editUser = new EventEmitter<number>();
+  @Output() editUser = new EventEmitter<User>();
   @Output() deleteUser = new EventEmitter<User>();
-  constructor(private userService: UserService) { }
+  constructor() { }
 
   ngOnInit() {
   }
-  onEditProfile(id: number) {
-    this.editUser.emit(id);
+  onEditProfile(user: User) {
+    this.editUser.emit(user);
   }
   onDeleteProfile(user: User) {
     this.deleteUser.emit(user);

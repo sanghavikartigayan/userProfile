@@ -1,165 +1,118 @@
-<div class="container u-margin-top-large">
-    <div class="card u-margin-center" *ngIf="this.showUser; else noUser" style="min-width: 1000px;">
-        <div class="card-body">
-            <div class="card-header">
-                <h2 class="font-weight-bold">Edit user</h2>
+<!-- Modal -->
+<div class="modal fade" id="editUser" tabindex="-1" role="dialog" aria-labelledby="editUserModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="editUserModalLabel">Edit User</h2>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
-            <form [formGroup]="editUser" (ngSubmit)="onEdit(this.user.id, editUser.value)">
-                <div class="row">
-                    <div class="col-sm-6 col-xs-12 col-md-6">
-                        <div class="form-group">
-                            <label for="name">Name</label>
-                            <input type="text" class="form-control" placeholder="Name" formControlName="name" required
-                                [ngClass]="{'is-invalid': editUser.get('name').invalid && (editUser.get('name').dirty || editUser.get('name').touched)}">
-                            <div class="invalid-feedback text-danger"
-                                *ngIf="editUser.get('name').hasError('required') && (editUser.get('name').dirty || editUser.get('name').touched)">
-                                Name is required.
+            <div class="modal-body" style="min-height: 550px;">
+                <form [formGroup]="editUser" (ngSubmit)="onEdit(editUser.value)">
+                    <div class="row">
+                        <div class="col-sm-6 col-xs-12 col-md-6">
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" class="form-control" placeholder="Name" formControlName="name">
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-xs-12 col-md-6">
+                            <div class="form-group">
+                                <label for="username">User Name</label>
+                                <input type="text" class="form-control" placeholder="User Name"
+                                    formControlName="username">
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-6 col-xs-12 col-md-6">
-                        <div class="form-group">
-                            <label for="username">User Name</label>
-                            <input type="text" class="form-control" placeholder="User Name" formControlName="username"
-                                required
-                                [ngClass]="{'is-invalid': editUser.get('username').invalid && (editUser.get('username').dirty || editUser.get('username').touched)}">
-                            <div class="invalid-feedback text-danger"
-                                *ngIf="editUser.get('username').hasError('required') && (editUser.get('username').dirty || editUser.get('username').touched)">
-                                User Name is required.
+                    <div class="row">
+                        <div class="col-sm-6 col-xs-12 col-md-6">
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" class="form-control" placeholder="name@example.com"
+                                    formControlName="email">
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-xs-12 col-md-6">
+                            <div class="form-group">
+                                <label for="phone">Phone</label>
+                                <input type="text" class="form-control" placeholder="Phone Number"
+                                    formControlName="phone">
+
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-6 col-xs-12 col-md-6">
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" class="form-control" placeholder="name@example.com"
-                                formControlName="email" required
-                                [ngClass]="{'is-invalid': editUser.get('email').invalid && (editUser.get('email').dirty || editUser.get('email').touched)}">
-                            <div class="invalid-feedback text-danger"
-                                *ngIf="editUser.get('email').hasError('required') && (editUser.get('email').dirty || editUser.get('email').touched)">
-                                Email is required.
+                    <div class="row" formGroupName="address">
+                        <div class="col-sm-6 col-xs-12 col-md-6">
+                            <div class="form-group">
+                                <label for="street">Street Name</label>
+                                <input type="text" class="form-control" placeholder="Street" formControlName="street">
                             </div>
-                            <div class="invalid-feedback text-danger"
-                                *ngIf="editUser.get('email').hasError('email') && (editUser.get('email').dirty || editUser.get('email').touched)">
-                                Invalid Email.
+                        </div>
+                        <div class="col-sm-6 col-xs-12 col-md-6">
+                            <div class="form-group">
+                                <label for="suite">Suite/Apt</label>
+                                <input type="text" class="form-control" placeholder="Suite/Apt" formControlName="suite">
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-6 col-xs-12 col-md-6">
-                        <div class="form-group">
-                            <label for="phone">Phone</label>
-                            <input type="text" class="form-control" placeholder="Phone Number" formControlName="phone"
-                                required
-                                [ngClass]="{'is-invalid': editUser.get('phone').invalid && (editUser.get('phone').dirty || editUser.get('phone').touched)}">
-                            <div class="invalid-feedback text-danger"
-                                *ngIf="editUser.get('phone').hasError('required') && (editUser.get('phone').dirty || editUser.get('phone').touched)">
-                                Phone is required.
+                    <div class="row" formGroupName="address">
+                        <div class="col-sm-6 col-xs-12 col-md-6">
+                            <div class="form-group">
+                                <label for="city">City</label>
+                                <input type="text" class="form-control" placeholder="city" formControlName="city">
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-xs-12 col-md-6">
+                            <div class="form-group">
+                                <label for="zipcode">Zip/Postalcode</label>
+                                <input type="text" class="form-control" placeholder="Zip/Postal code"
+                                    formControlName="zipcode">
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="row" formGroupName="address">
-                    <div class="col-sm-6 col-xs-12 col-md-6">
-                        <div class="form-group">
-                            <label for="street">Street Name</label>
-                            <input type="text" class="form-control" placeholder="Street" formControlName="street"
-                                required
-                                [ngClass]="{'is-invalid': editUser.get('address').get('street').invalid && (editUser.get('address').get('street').dirty || editUser.get('address').get('street').touched)}">
-                            <div class="invalid-feedback text-danger"
-                                *ngIf="editUser.get('address').get('street').hasError('required') && (editUser.get('address').get('street').dirty || editUser.get('address').get('street').touched)">
-                                Street is required.
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="website">Website</label>
+                                <input type="text" class="form-control" placeholder="Website" formControlName="website">
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-6 col-xs-12 col-md-6">
-                        <div class="form-group">
-                            <label for="suite">Suite/Apt</label>
-                            <input type="text" class="form-control" placeholder="Suite/Apt" formControlName="suite"
-                                required
-                                [ngClass]="{'is-invalid': editUser.get('address').get('suite').invalid && (editUser.get('address').get('suite').dirty || editUser.get('address').get('suite').touched)}">
-                            <div class="invalid-feedback text-danger"
-                                *ngIf="editUser.get('address').get('suite').hasError('required') && (editUser.get('address').get('suite').dirty || editUser.get('address').get('suite').touched)">
-                                Suite/Apt number is required.
+                    <div class="row" formGroupName="company">
+                        <div class="col-sm-6 col-xs-12 col-md-6">
+                            <div class="form-group">
+                                <label for="companyname">Company Name</label>
+                                <input type="text" class="form-control" placeholder="Company Name"
+                                    formControlName="companyname">
+
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="catchPhrase">Catch Phrase</label>
+                                <input type="text" class="form-control" placeholder="Catch Phrase"
+                                    formControlName="catchPhrase">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="catchPhrase">BS</label>
+                                <input type="text" class="form-control" placeholder="BS" formControlName="bs">
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="row" formGroupName="address">
-                    <div class="col-sm-6 col-xs-12 col-md-6">
-                        <div class="form-group">
-                            <label for="city">City</label>
-                            <input type="text" class="form-control" placeholder="city" formControlName="city" required
-                                [ngClass]="{'is-invalid': editUser.get('address').get('city').invalid && (editUser.get('address').get('city').dirty || editUser.get('address').get('city').touched)}">
-                            <div class="invalid-feedback text-danger"
-                                *ngIf="editUser.get('address').get('city').hasError('required') && (editUser.get('address').get('city').dirty || editUser.get('address').get('city').touched)">
-                                City is required.
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-xs-12 col-md-6">
-                        <div class="form-group">
-                            <label for="zipcode">Zip/Postalcode</label>
-                            <input type="text" class="form-control" placeholder="Zip/Postal code"
-                                formControlName="zipcode" required
-                                [ngClass]="{'is-invalid': editUser.get('address').get('zipcode').invalid && (editUser.get('address').get('zipcode').dirty || editUser.get('address').get('zipcode').touched)}">
-                            <div class="invalid-feedback text-danger"
-                                *ngIf="editUser.get('address').get('zipcode').hasError('required') && (editUser.get('address').get('zipcode').dirty || editUser.get('address').get('zipcode').touched)">
-                                Zip/Postal Code is required.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <label for="website">Website</label>
-                            <input type="text" class="form-control" placeholder="Website" formControlName="website">
-                        </div>
-                    </div>
-                </div>
-                <div class="row" formGroupName="company">
-                    <div class="col-sm-6 col-xs-12 col-md-6">
-                        <div class="form-group">
-                            <label for="companyname">Company Name</label>
-                            <input type="text" class="form-control" placeholder="Company Name"
-                                formControlName="companyname" required
-                                [ngClass]="{'is-invalid': editUser.get('company').get('companyname').invalid && (editUser.get('company').get('companyname').dirty || editUser.get('company').get('companyname').touched)}">
-                            <div class="invalid-feedback text-danger"
-                                *ngIf="editUser.get('company').get('companyname').hasError('required') && (editUser.get('company').get('companyname').dirty || editUser.get('company').get('companyname').touched)">
-                                Company Name is required.
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label for="catchPhrase">Catch Phrase</label>
-                            <input type="text" class="form-control" placeholder="Catch Phrase"
-                                formControlName="catchPhrase">
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label for="catchPhrase">BS</label>
-                            <input type="text" class="form-control" placeholder="BS" formControlName="bs">
-                        </div>
-                    </div>
-                </div>
-            </form>
-        </div>
-        <div class="card-footer u-margin-top pull-right">
-            <button type="button" class="btn btn-secondary" (click)="goBack()">Cancel</button>
-            <button type="button" class="btn btn-primary u-margin-left" (click)="onEdit(this.user.id, editUser.value)"
-                [disabled]="!this.editUser.valid">Save
-                changes</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                    (click)="onCancel()">Cancel</button>
+                <button type="button" class="btn btn-primary u-margin-left"
+                    (click)="onEdit(this.user.id, editUser.value)" [disabled]="!this.editUser.valid"
+                    data-dismiss="modal">Save
+                    changes</button>
+            </div>
         </div>
     </div>
 </div>
-<ng-template #noUser>
-    <div class="container u-margin-top-large">
-        <img src="../../../../assets/404.JPG" alt="404" (click)="goBack()">
-        <h3 class="text-danger" style="text-align: center;"> Sorry, no user with this ID is found in RESTful server
-            database!!!</h3>
-    </div>
-</ng-template>

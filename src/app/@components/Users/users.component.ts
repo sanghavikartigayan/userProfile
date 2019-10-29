@@ -11,8 +11,10 @@ import { Router } from '@angular/router';
 })
 export class UsersComponent implements OnInit {
   users: User[];
+  user: any;
   searchUser: FormGroup;
   addNew = false;
+  editUser = false;
   constructor(private userService: UserService, private route: Router) { }
 
   ngOnInit() {
@@ -36,8 +38,17 @@ export class UsersComponent implements OnInit {
     this.users.push(newUser);
   }
 
-  onEditUser(id: number) {
-    this.route.navigateByUrl(`/${id}`);
+  onEditUser(user: User) {
+    this.userService.editUser(user).subscribe((res) => {
+      // this.route.navigateByUrl(`/${user.id}`);
+      this.editUser = true;
+      console.log('users component', res);
+      this.user = res;
+    });
+  }
+
+  onEdittedUser(user: User) {
+    console.log('Back to main', user);
   }
 
   onDeleteUser(user: User) {
@@ -47,4 +58,7 @@ export class UsersComponent implements OnInit {
     });
   }
 
+  onCancelEdit() {
+    this.editUser = false;
+  }
 }
