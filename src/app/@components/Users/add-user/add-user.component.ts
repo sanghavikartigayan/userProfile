@@ -1,7 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { UserService } from 'src/app/@shared/services/user-service.service';
-import { User } from 'src/app/@shared/models/user.model';
 
 @Component({
   selector: 'app-add-user',
@@ -10,7 +9,7 @@ import { User } from 'src/app/@shared/models/user.model';
 })
 export class AddUserComponent implements OnInit {
 
-  @Output() newUser = new EventEmitter<User>();
+  @Output() newUser = new EventEmitter<any>();
   addUser: FormGroup;
   constructor(private userService: UserService) { }
 
@@ -28,13 +27,16 @@ export class AddUserComponent implements OnInit {
       phone: new FormControl('', Validators.required),
       website: new FormControl(''),
       company: new FormGroup({
-        name: new FormControl('', Validators.required),
-        catchPhrase: new FormControl('')
+        companyname: new FormControl('', Validators.required),
+        catchPhrase: new FormControl(''),
+        bs: new FormControl('')
       })
     });
   }
 
   onAdd(formValue) {
-    this.userService.addUser(formValue).subscribe(res => console.log(res));
+    this.userService.addUser(formValue).subscribe(res => {
+      this.newUser.emit(res);
+    });
   }
 }

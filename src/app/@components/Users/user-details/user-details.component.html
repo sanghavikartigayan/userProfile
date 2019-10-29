@@ -1,6 +1,6 @@
 <div class="container">
     <div class="row">
-        <div class="grid profile" *ngIf="this.user">
+        <div class="grid profile" *ngIf="this.user && this.showUser; else noUser">
             <div class="col-md-4">
                 <div class="grid__profile" style="margin-bottom: 5rem;">
                     <img src="../../../assets/backgroundimage.jpeg" class="image" alt="{{ user.name }}">
@@ -83,3 +83,11 @@
             </div>
         </div>
     </div>
+
+    <ng-template #noUser>
+        <div class="container u-margin-top-large">
+            <img src="../../../../assets/404.JPG" alt="404" (click)="goBack()">
+            <h3 class="text-danger" style="text-align: center;"> Sorry, no user with this ID is found in RESTful server
+                database!!!</h3>
+        </div>
+    </ng-template>

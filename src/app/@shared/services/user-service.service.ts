@@ -31,6 +31,6 @@ export class UserService {
   }
 
   addUser(data: User) {
-    return this.http.post(`${this.baseUrl}`, data).pipe(res => this.getUsers());
+    return this.http.post(`${this.baseUrl}`, data);
   }
 }

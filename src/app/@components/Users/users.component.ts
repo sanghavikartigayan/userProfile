@@ -28,4 +28,10 @@ export class UsersComponent implements OnInit {
       console.log(res);
     });
   }
+
+  onAddNew(newUser) {
+    const id = this.users[(this.users.length) - 1].id + 1;
+    newUser.id = id;
+    this.users.push(newUser);
+  }
 }

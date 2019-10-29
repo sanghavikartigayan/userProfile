@@ -15,7 +15,7 @@
         </div>
     </form>
     <div *ngIf="addNew === true">
-        <app-add-user></app-add-user>
+        <app-add-user (newUser)="onAddNew($event)"></app-add-user>
     </div>
 </div>
 <div class="container-fluid">

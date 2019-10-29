@@ -8,65 +8,117 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body" style="min-height: 400px;">
+            <div class="modal-body" style="min-height: 550px;">
                 <form [formGroup]="addUser" (ngSubmit)="onAdd(addUser.value)">
-                    <div class="form-row">
-                        <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-sm-6 col-xs-12 col-md-6">
                             <div class="form-group">
                                 <label for="name">Name</label>
-                                <input type="text" class="form-control" placeholder="Name" formControlName="name">
+                                <input type="text" class="form-control" placeholder="Name" formControlName="name"
+                                    required
+                                    [ngClass]="{'is-invalid': addUser.get('name').invalid && (addUser.get('name').dirty || addUser.get('name').touched)}">
+                                <div class="invalid-feedback text-danger"
+                                    *ngIf="addUser.get('name').hasError('required') && (addUser.get('name').dirty || addUser.get('name').touched)">
+                                    Name is required.
+                                </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-sm-6 col-xs-12 col-md-6">
                             <div class="form-group">
                                 <label for="username">User Name</label>
                                 <input type="text" class="form-control" placeholder="User Name"
-                                    formControlName="username">
+                                    formControlName="username" required
+                                    [ngClass]="{'is-invalid': addUser.get('username').invalid && (addUser.get('username').dirty || addUser.get('username').touched)}">
+                                <div class="invalid-feedback text-danger"
+                                    *ngIf="addUser.get('username').hasError('required') && (addUser.get('username').dirty || addUser.get('username').touched)">
+                                    User Name is required.
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="form-row">
-                        <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-sm-6 col-xs-12 col-md-6">
                             <div class="form-group">
                                 <label for="email">Email</label>
-                                <input type="text" class="form-control" placeholder="Email" formControlName="email">
+                                <input type="email" class="form-control" placeholder="name@example.com"
+                                    formControlName="email" required
+                                    [ngClass]="{'is-invalid': addUser.get('email').invalid && (addUser.get('email').dirty || addUser.get('email').touched)}">
+                                <div class="invalid-feedback text-danger"
+                                    *ngIf="addUser.get('email').hasError('required') && (addUser.get('email').dirty || addUser.get('email').touched)">
+                                    Email is required.
+                                </div>
+                                <div class="invalid-feedback text-danger"
+                                    *ngIf="addUser.get('email').hasError('email') && (addUser.get('email').dirty || addUser.get('email').touched)">
+                                    Invalid Email.
+                                </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-sm-6 col-xs-12 col-md-6">
                             <div class="form-group">
                                 <label for="phone">Phone</label>
                                 <input type="text" class="form-control" placeholder="Phone Number"
-                                    formControlName="phone">
+                                    formControlName="phone" required
+                                    [ngClass]="{'is-invalid': addUser.get('phone').invalid && (addUser.get('phone').dirty || addUser.get('phone').touched)}">
+                                <div class="invalid-feedback text-danger"
+                                    *ngIf="addUser.get('phone').hasError('required') && (addUser.get('phone').dirty || addUser.get('phone').touched)">
+                                    Phone is required.
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="form-row" formGroupName="address">
-                        <div class="col-md-3">
+                    <div class="row" formGroupName="address">
+                        <div class="col-sm-6 col-xs-12 col-md-6">
                             <div class="form-group">
                                 <label for="street">Street Name</label>
-                                <input type="text" class="form-control" placeholder="Street" formControlName="street">
+                                <input type="text" class="form-control" placeholder="Street" formControlName="street"
+                                    required
+                                    [ngClass]="{'is-invalid': addUser.get('address').get('street').invalid && (addUser.get('address').get('street').dirty || addUser.get('address').get('street').touched)}">
+                                <div class="invalid-feedback text-danger"
+                                    *ngIf="addUser.get('address').get('street').hasError('required') && (addUser.get('address').get('street').dirty || addUser.get('address').get('street').touched)">
+                                    Street is required.
+                                </div>
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-sm-6 col-xs-12 col-md-6">
                             <div class="form-group">
-                                <label for="suite">Suite</label>
-                                <input type="text" class="form-control" placeholder="Suite" formControlName="suite">
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label for="city">City</label>
-                                <input type="text" class="form-control" placeholder="city" formControlName="city">
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label for="zipcode">Zipcode</label>
-                                <input type="text" class="form-control" placeholder="zipcode" formControlName="zipcode">
+                                <label for="suite">Suite/Apt</label>
+                                <input type="text" class="form-control" placeholder="Suite/Apt" formControlName="suite"
+                                    required
+                                    [ngClass]="{'is-invalid': addUser.get('address').get('suite').invalid && (addUser.get('address').get('suite').dirty || addUser.get('address').get('suite').touched)}">
+                                <div class="invalid-feedback text-danger"
+                                    *ngIf="addUser.get('address').get('suite').hasError('required') && (addUser.get('address').get('suite').dirty || addUser.get('address').get('suite').touched)">
+                                    Suite/Apt number is required.
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="form-row">
+                    <div class="row" formGroupName="address">
+                        <div class="col-sm-6 col-xs-12 col-md-6">
+                            <div class="form-group">
+                                <label for="city">City</label>
+                                <input type="text" class="form-control" placeholder="city" formControlName="city"
+                                    required
+                                    [ngClass]="{'is-invalid': addUser.get('address').get('city').invalid && (addUser.get('address').get('city').dirty || addUser.get('address').get('city').touched)}">
+                                <div class="invalid-feedback text-danger"
+                                    *ngIf="addUser.get('address').get('city').hasError('required') && (addUser.get('address').get('city').dirty || addUser.get('address').get('city').touched)">
+                                    City is required.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-xs-12 col-md-6">
+                            <div class="form-group">
+                                <label for="zipcode">Zip/Postalcode</label>
+                                <input type="text" class="form-control" placeholder="Zip/Postal code"
+                                    formControlName="zipcode" required
+                                    [ngClass]="{'is-invalid': addUser.get('address').get('zipcode').invalid && (addUser.get('address').get('zipcode').dirty || addUser.get('address').get('zipcode').touched)}">
+                                <div class="invalid-feedback text-danger"
+                                    *ngIf="addUser.get('address').get('zipcode').hasError('required') && (addUser.get('address').get('zipcode').dirty || addUser.get('address').get('zipcode').touched)">
+                                    Zip/Postal Code is required.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="website">Website</label>
@@ -74,19 +126,30 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-row" formGroupName="company">
-                        <div class="col-md-6">
+                    <div class="row" formGroupName="company">
+                        <div class="col-sm-6 col-xs-12 col-md-6">
                             <div class="form-group">
-                                <label for="name">Company Name</label>
+                                <label for="companyname">Company Name</label>
                                 <input type="text" class="form-control" placeholder="Company Name"
-                                    formControlName="name">
+                                    formControlName="companyname" required
+                                    [ngClass]="{'is-invalid': addUser.get('company').get('companyname').invalid && (addUser.get('company').get('companyname').dirty || addUser.get('company').get('companyname').touched)}">
+                                <div class="invalid-feedback text-danger"
+                                    *ngIf="addUser.get('company').get('companyname').hasError('required') && (addUser.get('company').get('companyname').dirty || addUser.get('company').get('companyname').touched)">
+                                    Company Name is required.
+                                </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-3">
                             <div class="form-group">
                                 <label for="catchPhrase">Catch Phrase</label>
                                 <input type="text" class="form-control" placeholder="Catch Phrase"
                                     formControlName="catchPhrase">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="catchPhrase">BS</label>
+                                <input type="text" class="form-control" placeholder="BS" formControlName="bs">
                             </div>
                         </div>
                     </div>
@@ -94,7 +157,8 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" (click)="onAdd(addUser.value)" data-dismiss="modal">Save
+                <button type="button" class="btn btn-primary" (click)="onAdd(addUser.value)" data-dismiss="modal"
+                    [disabled]="!this.addUser.valid">Save
                     changes</button>
             </div>
         </div>

@@ -10,6 +10,7 @@ import { UserService } from 'src/app/@shared/services/user-service.service';
 })
 export class UserDetailsComponent implements OnInit {
   user: User;
+  showUser = false;
 
   activeTab;
   constructor(private activatedRoute: ActivatedRoute, private userService: UserService, private route: Router) { }
@@ -21,6 +22,9 @@ export class UserDetailsComponent implements OnInit {
     this.userService.getUserProfile(id)
       .subscribe((user: User) => {
         this.user = user;
+        this.showUser = true;
+      }, (err) => {
+        this.showUser = false;
       });
   }
 
