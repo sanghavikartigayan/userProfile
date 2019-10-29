@@ -21,7 +21,7 @@
 <div class="container-fluid">
     <div class="flex__container flex__container-center">
         <ng-container *ngFor="let user of users">
-            <app-user [user]="user" class="flex__item"></app-user>
+            <app-user [user]="user" (editUser)="onEditUser($event)" class="flex__item"></app-user>
         </ng-container>
     </div>
 </div>

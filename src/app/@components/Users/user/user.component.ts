@@ -1,5 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { User } from 'src/app/@shared/models/user.model';
+import { UserService } from 'src/app/@shared/services/user-service.service';
 
 @Component({
   selector: 'app-user',
@@ -9,9 +10,12 @@ import { User } from 'src/app/@shared/models/user.model';
 export class UserComponent implements OnInit {
 
   @Input() user: User;
-  constructor() { }
+  @Output() editUser = new EventEmitter<number>();
+  constructor(private userService: UserService) { }
 
   ngOnInit() {
   }
-
+  onEditProfile(id: number) {
+    this.editUser.emit(id);
+  }
 }
