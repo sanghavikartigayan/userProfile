@@ -33,3 +33,28 @@
     padding: 0;
   }
 }
+
+.btn-rounded {
+  font-size: 15px;
+  line-height: 15px;
+  border-radius: 50%;
+  background: snow;
+  padding: 4px;
+  transition: all 0.3s ease 0s;
+
+  &-delete {
+    color: rgba(217, 83, 78, 0.75);
+    border: 2px solid rgba(217, 83, 78, 0.75);
+  }
+
+  &-edit {
+    color: rgba(240, 173, 78, 0.75);
+    border: 2px solid rgba(240, 173, 78, 0.75);
+  }
+
+  &-view {
+    color: rgba(91, 192, 222, 0.75);
+    border: 2px solid rgba(91, 192, 222, 0.75);
+    padding: 3px;
+  }
+}

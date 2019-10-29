@@ -33,11 +33,15 @@
             <footer class="card-footer">
                 <hr>
                 <div class="section">
-                    <i class="fa fa-trash" (click)="onDeleteProfile(user)"></i>
-                    <i class="fa fa-edit u-margin-left" (click)="onEditProfile(user.id)"></i>
+                    <button class="btn-rounded btn-rounded-delete"><i class="fa fa-trash"
+                            (click)="onDeleteProfile(user)"></i></button>
+                    <button class="btn-rounded btn-rounded-edit u-margin-left"><i class="fa fa-edit"
+                            (click)="onEditProfile(user.id)"></i></button>
+                    <a class="btn-rounded btn-rounded-view u-margin-left"><i class="fa fa-eye"
+                            [routerLink]="['/user/',user.id]"></i></a>
                 </div>
-                <a class=" btn btn-info u-margin-top-small" [routerLink]="['/user/',user.id]">View
-                    Profile</a>
+                <!-- <a class=" btn btn-info u-margin-top-small" [routerLink]="['/user/',user.id]">View
+                    Profile</a> -->
                 <!-- <a class="btn btn-success u-margin-left-small text-white" (click)="onEditProfile(user.id)">Edit
                     Profile</a> -->
             </footer>
