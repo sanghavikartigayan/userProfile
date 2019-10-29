@@ -34,7 +34,11 @@ export class UserService {
     return this.http.post(`${this.baseUrl}`, data);
   }
 
-  editUser(id: number) {
-    // return this.http.put(`${this.baseUrl}/${id}`);
+  editUser(id: number, formData) {
+    return this.http.put(`${this.baseUrl}/${id}`, formData);
+  }
+
+  deleteUser(id: number) {
+    return this.http.delete(`${this.baseUrl}/${id}`);
   }
 }

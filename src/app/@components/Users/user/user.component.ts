@@ -11,11 +11,15 @@ export class UserComponent implements OnInit {
 
   @Input() user: User;
   @Output() editUser = new EventEmitter<number>();
+  @Output() deleteUser = new EventEmitter<User>();
   constructor(private userService: UserService) { }
 
   ngOnInit() {
   }
   onEditProfile(id: number) {
     this.editUser.emit(id);
+  }
+  onDeleteProfile(user: User) {
+    this.deleteUser.emit(user);
   }
 }

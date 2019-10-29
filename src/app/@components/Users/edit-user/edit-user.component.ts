@@ -50,7 +50,9 @@ export class EditUserComponent implements OnInit {
   goBack() {
     this.route.navigateByUrl('/');
   }
-  onEdit(formValue) {
-    this.userService.editUser(formValue);
+  onEdit(id, formValue) {
+    this.userService.editUser(id, formValue).subscribe(res => {
+      console.log(res);
+    });
   }
 }

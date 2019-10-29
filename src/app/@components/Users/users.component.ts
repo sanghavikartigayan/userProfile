@@ -39,4 +39,12 @@ export class UsersComponent implements OnInit {
   onEditUser(id: number) {
     this.route.navigateByUrl(`/${id}`);
   }
+
+  onDeleteUser(user: User) {
+    this.userService.deleteUser(user.id).subscribe(res => {
+      const index = this.users.indexOf(user);
+      this.users.splice(index, 1);
+    });
+  }
+
 }
