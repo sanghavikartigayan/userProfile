@@ -10,7 +10,7 @@
                 </button>
             </div>
             <div class="modal-body" style="min-height: 550px;">
-                <form [formGroup]="editUser" (ngSubmit)="onEdit(editUser.value)">
+                <form [formGroup]="editUser" (ngSubmit)="onEdit(user.id,editUser.value)">
                     <div class="row">
                         <div class="col-sm-6 col-xs-12 col-md-6">
                             <div class="form-group">
@@ -107,10 +107,9 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal"
-                    (click)="onCancel()">Cancel</button>
-                <button type="button" class="btn btn-primary u-margin-left"
-                    (click)="onEdit(this.user.id, editUser.value)" [disabled]="!this.editUser.valid"
-                    data-dismiss="modal">Save
+                    (click)="this.editUserTrigger = false;">Cancel</button>
+                <button type="button" class="btn btn-primary u-margin-left" (click)="onEdit(user.id,editUser.value)"
+                    [disabled]="!this.editUser.valid" data-dismiss="modal">Save
                     changes</button>
             </div>
         </div>

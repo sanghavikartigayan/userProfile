@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from '../models/user.model';
+import { map } from 'rxjs/operators';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -26,16 +27,16 @@ export class UserService {
     return this.http.get(`${this.baseUrl}/${id}`);
   }
 
-  getUserByName(name: string) {
-    return this.http.get(`https://jsonplaceholder.typicode.com/user?name=${name}`);
+  getUserByName(username: string) {
+    return this.http.get(`${this.baseUrl}/${username}`);
   }
 
   addUser(data: User) {
     return this.http.post(`${this.baseUrl}`, data);
   }
 
-  editUser(user: User) {
-    return this.http.patch(`${this.baseUrl}/${user.id}`, JSON.stringify({ isRead: true }));
+  editUser(id: number, user: User) {
+    return this.http.put(`${this.baseUrl}/${id}`, user).pipe(map(res => JSON.stringify(res)));
   }
 
   deleteUser(id: number) {

@@ -3,6 +3,7 @@ import { User } from 'src/app/@shared/models/user.model';
 import { UserService } from 'src/app/@shared/services/user-service.service';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { identifierModuleUrl } from '@angular/compiler';
 
 @Component({
   selector: 'app-users',
@@ -39,26 +40,27 @@ export class UsersComponent implements OnInit {
   }
 
   onEditUser(user: User) {
-    this.userService.editUser(user).subscribe((res) => {
-      // this.route.navigateByUrl(`/${user.id}`);
-      this.editUser = true;
-      console.log('users component', res);
-      this.user = res;
-    });
+    this.editUser = true;
+    this.user = user;
   }
 
-  onEdittedUser(user: User) {
-    console.log('Back to main', user);
+  onEdittedUser(value: boolean) {
+    // const index = this.users.findIndex(d => d.id === user.id) + 1;
+    // const index = this.users.indexOf(user);
+    // this.users[index + 1] = Object.assign({}, user);
+    // console.log('this.users', this.users);
+    // console.log('this.users[index]', this.users[index]);
+    // return this.users;
+    this.editUser = value;
+    console.log(this.users);
   }
 
   onDeleteUser(user: User) {
-    this.userService.deleteUser(user.id).subscribe(res => {
-      const index = this.users.indexOf(user);
-      this.users.splice(index, 1);
+    const index = this.users.indexOf(user);
+    this.users.splice(index, 1);
+    this.userService.deleteUser(user.id).subscribe(null, err => {
+      alert('Can not delet this user');
+      console.log(err);
     });
-  }
-
-  onCancelEdit() {
-    this.editUser = false;
   }
 }

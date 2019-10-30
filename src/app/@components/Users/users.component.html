@@ -18,14 +18,14 @@
         <app-add-user (newUser)="onAddNew($event)"></app-add-user>
     </div>
     <div *ngIf="editUser === true">
-        <app-edit-user [user]="this.user" (editedUser)="onEdittedUser($event)" (cancelEdit)="onCancelEdit()">
+        <app-edit-user [(user)]="this.user" [(editUserTrigger)]="this.editUser" (editedUser)="onEdittedUser($event)">
         </app-edit-user>
     </div>
 </div>
 <div class="container-fluid">
     <div class="flex__container flex__container-center">
         <ng-container *ngFor="let user of users">
-            <app-user [user]="user" (editUser)="onEditUser($event)" (deleteUser)="onDeleteUser($event)"
+            <app-user [(user)]="user" (editUser)="onEditUser($event)" (deleteUser)="onDeleteUser($event)"
                 class="flex__item"></app-user>
         </ng-container>
     </div>
